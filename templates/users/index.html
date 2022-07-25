@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    {% if messages %}
+        {%for message in messages%}
+        <div class="messages">
+            {{message}}
+        </div>
+        {% endfor %}
+    {% endif %}
+<hr/>
+    {% if user.email %}
+        <h2>Bienvenido, {{request.user.first_name}}</h2>
+    {% else %}
+        <h2>Identificate para ver mas cosas</h2>
+    {% endif %}
+    <h3>Comentarios de nuestros clientes:</h3>
+    <p>_________________________________________</p>
+    {% for comentario in comentarios %}
+        <p>Titulo: {{ comentario.corta_desc }}</p>
+        <p>Comentario: {{ comentario.content }}</p>
+        <p>Usuario: {{ comentario.user }}</p>
+        <p>Fecha: {{comentario.created_at}}</p>
+    <p>_________________________________________</p>
+    {% endfor %}
+    <p>_________________________________________</p>
+    <h5>Los ultimos aviones cargados fueron: </h5>
+    <ul class="list-group">
+    {% for avion in avion %}
+
+        <p>Modelo: {{avion.modelo}}</p>
+        <p>Activo: {{avion.estado}}</p>
+    
+    {% endfor %}
+
+{% endblock content %}

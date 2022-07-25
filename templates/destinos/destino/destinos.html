@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Destinos disponibles de: {{ pais.pais }}</h2>
+    {% comment %} <a href="/aerolineasapi/destinos/{{ pais.slug }}/create"> {% endcomment %}
+    <!---->
+    {% if user.is_superuser %}
+    <!---->
+    <a href="{% url 'CrearDestinos' pais.slug %}">
+        <button type="button" class="btn btn-outline-success">Crear Destino</button>
+    </a>
+    <!---->
+    {% endif %}
+    <!---->
+{% for destino in destinos %}
+<div style="text-align: center;">
+    <p>
+        <h2>{{ destino.destino }}</h2>
+    </p>
+    <p>
+        <h3>Fecha de Creacion: {{ destino.created_at|date:"d/m/Y" }}</h3>
+    </p>
+    <p>
+        <img src="{{ destino.imagen.url }}" width="150" height="150">
+    </p>
+    <!---->
+    {% if user.is_superuser %}
+    <!---->
+    <p>
+        {% comment %} <a href="/aerolineasapi/destinos/edit/{{ destino.id }}"> {% endcomment %}
+        <a href="{% url 'EditarDestino' destino.id %}">
+        <button type="button" class="btn btn-outline-warning">Editar Destino</button>
+        </a>
+    </p>
+    <p>
+        {% comment %} <a href="/aerolineasapi/destinos/delete/{{ destino.id }}"> {% endcomment %}
+        <a href="{% url 'EliminarDestino' destino.id %}">
+        <button type="button" class="btn btn-outline-danger">Eliminar Destino</button>
+        </a>
+    </p>
+    <!---->
+    {% endif %}
+    <!---->
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+    <div style="text-align: center;">
+        {% csrf_token %}
+        <label>¿Seguro que desea eliminar este elemento?</label>
+        <h3>{{ pais.pais }}</h3>
+        <input class="btn btn-outline-danger" type="submit" value="Eliminar">
+        <a href='{% url 'VistaPaises' %}'><button type="button" class="btn btn-outline-info">Volver</button></a>
+        {% comment %} <a href="/aerolineasapi/paises/"><button type="button" class="btn btn-outline-info">Volver</button></a> {% endcomment %}
+    </div>
+</form>
+{% endblock content %}

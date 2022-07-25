@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Compra Boleto para {{ user.username}}</h3>
+<form method="post">
+    {% csrf_token %}
+    <div class="col-6 mb-3">
+        <label for="avion" class="form-label">Destino</label>
+        <select class="form-select" aria-label="Default select example" name="destino">
+            {% for destino in destinos %}
+            <option value="{{ destino.destino }}">{{ destino.destino }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input class="btn btn-success" type="submit" value="Comprar">
+    
+</form>
+
+<script type="text/javascript">
+    $(function() {
+        $('#datepicker').datepicker();
+    });
+</script>
+{% endblock content %}

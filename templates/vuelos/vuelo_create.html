@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container card" style="background-color: rgb(234, 237, 240);">
+        <div style="text-align: center;">
+            <h3>Crear Nuevo Vuelo</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Destino</label>
+                    <input type="text" class="form-control" value="{{ destino.destino }}" readonly>
+                    <input type="hidden" class="form-control" value="{{ destino.id }}" name="destino">
+                </div>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="avion" class="form-label">Avion</label>
+                <select class="form-select" aria-label="Default select example" name="avion">
+                    {% for avion in aviones %}
+                    <option value="{{ avion.id }}">{{ avion.modelo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="pilotos" class="form-label">Piloto</label>
+                <select class="form-select" aria-label="Default select example" name="piloto">
+                    {% for piloto in pilotos %}
+                    <option value="{{ piloto.id }}">{{ piloto.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4 mb-3">
+                <label for="date">Fecha de Salida</label>
+                <div class="input-group date" id="datepicker">
+                    <input type="text" class="form-control" name="fecha_salida" required>
+                    <span class="input-group-append" required>
+                        <span class="input-group-text bg-white d-block" required>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-4 mb-3">
+                <label for="date">Cupos</label>
+                <input type="number" class="form-control" name="cupos" required>
+            </div>
+            <div class="col-4 mb-3">
+                <label for="date">Estado</label>
+                <select class="form-select" aria-label="Default select example" name="estado" required>
+                    <option value="True">Activo</option>
+                    <option value="True">Inactivo</option>
+                </select>
+            </div>
+            <input class="btn btn-success" type="submit" value="Crear Vuelo">
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function() {
+        $('#datepicker').datepicker();
+    });
+</script>
+{% endblock content %}

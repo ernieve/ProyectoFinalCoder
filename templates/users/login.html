@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    {% comment %} {% if messages %}
+        {%for message in messages%}
+        <div class="messages-warning">
+            {{message}}
+         </div>
+        {% endfor %}
+    {% endif %} {% endcomment %}
+    <!--En caso que se produzcan errores se mostrara-->
+    <form method='POST' action="">
+        {% csrf_token %}
+        <label for="username">Nombre de usuario: </label>
+        <input type="text" name="username"/>
+        <label fro="password">Contraseña: </label>
+        <input type="password" name="password"/>
+        <input type='submit' value='Iniciar sesion'></input>
+    </form>
+{% endblock content %}

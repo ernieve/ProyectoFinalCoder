@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+    {{ message }}
+{% endif %}
+<!---->
+{% if user.is_superuser %}
+<!---->
+    <div >
+        <a href='{% url 'CrearPais' %}'><button type="button" class="btn btn-outline-success">Crear Nuevo Pais</button></a>
+    </div>
+<!---->
+{% endif %}
+<!---->
+{% for pais in paises %}
+    {% comment %} <div style="text-align: center;"> {% endcomment %}
+    <div class="articulo-item">
+        <p>
+            <h4>{{ pais.pais }}</h4>
+        </p>
+        <p>
+            {% comment %} <img src="{{ pais.imagen.url }}" height="200" width="200"> {% endcomment %}
+            <img class="imagen" src="{{ pais.imagen.url }}">
+        </p>
+        <p>
+            <a href="{% url 'VistaDestinos' pais.slug %}"><button type="button" class="btn btn-outline-info">Ver Destinos Disponibles</button></a>
+            {% comment %} <a href="{{ pais.slug }}"><button type="button" class="btn btn-outline-info">Ver Destinos Disponibles</button></a> {% endcomment %}
+        </p>
+        <!---->
+        {% if user.is_superuser %}
+            <!---->
+            <p>
+                <a href="{% url 'EditarPais' pais.id %}"><button type="button" class="btn btn-outline-warning">Editar Pais</button></a>
+                {% comment %} <a href="edit/{{ pais.id }}"><button type="button" class="btn btn-outline-warning">Editar Pais</button></a> {% endcomment %}
+            </p>
+            <p>
+                <a href="{% url 'EliminarPais' pais.id %}"><button type="button" class="btn btn-outline-danger">Eliminar Pais</button></a>
+                {% comment %} <a href="delete/{{ pais.id }}"><button type="button" class="btn btn-outline-danger">Eliminar Pais</button></a> {% endcomment %}
+            </p>
+        <!---->
+        {% endif %}
+        <!---->
+    </div>
+{% endfor %}
+{% endblock content %}

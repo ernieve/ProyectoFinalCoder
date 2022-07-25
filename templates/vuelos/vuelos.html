@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Listado de vuelos</h1>
+
+    {% for vuelo in vuelos %}
+        <p><strong>Destino:</strong> {{ vuelo }}</p>
+        <p><strong>Numero vuelo:</strong> {{ vuelo.id }}</p>
+        <p><strong>Cupos:</strong> {{ vuelo.cupos }}</p>
+        <p><strong>Fecha Salida:</strong> {{ vuelo.fecha_salida }}</p>
+        <p>____________________</p>
+    {% endfor %}
+{% endblock %}

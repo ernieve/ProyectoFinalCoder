@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Boletos para {{ user.username}}</h3>
+{% for boleto in boletos%}
+    <p>{{ boleto.vuelo_id }} <a href="{% url 'eliminar_boleto' boleto.id %}"> eliminar </a></p>
+{% endfor %}
+<button><a href="{% url 'Comprar_boleto' %}"> Comprar </a></button>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#datepicker').datepicker();
+    });
+</script>
+{% endblock content %}

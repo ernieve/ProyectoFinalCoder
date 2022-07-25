@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <!--En caso que se produzcan errores se mostrara-->
+    {{ register_form.errors}}
+    <form method='POST' action="">
+    {% csrf_token %}
+        {% for campo in show_avion %}
+            <label>{{campo.label}}</label>
+            {{campo}}
+        {% endfor %}
+    <a href="{% url 'aviones' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Volver</a>
+    {% if user.is_superuser %}
+    <a href="{% url 'editar_aviones' avion.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> editar </a>
+    <a href="{% url 'eliminar_aviones' avion.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> eliminar </a>
+    {% endif %}
+</form>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="row col-7" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Crear Nuevo Pais</h3>
+    <div class="container">
+        <div class="col-6">
+            <label for="Pais">Pais</label>
+            <input type="text" class="form-control" name="pais" placeholder="Nombre del Pais" required>
+        </div>
+        <div class="col-6"> 
+            <label for="PaisEstrado">Estado del Pais</label>
+            <select class="form-select" name="estado" required>
+                <option value="True">Activo</option>
+                <option value="False">Inactivo</option>
+              </select>
+        </div>
+        <div class="col-6"> 
+            <label for="imagen" class="form-label">Imagen del Evento</label>
+            <input class="form-control" type="file" id="formFile" name="imagen" required>
+        </div>
+        <input class="btn btn-outline-success" type="submit" value="Crear Pais">
+        <a href='{% url 'VistaPaises' %}'><button type="button" class="btn btn-outline-info">Volver</button></a>
+        {% comment %} <a href="/aerolineasapi/paises/"><button type="button" class="btn btn-outline-info">Volver</button></a> {% endcomment %}
+    </div>
+</form>
+{% endblock content %}

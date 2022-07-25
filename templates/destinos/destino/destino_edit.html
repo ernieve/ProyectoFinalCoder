@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="row col-7" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Editar Destino: {{ destino.destino }}</h3>
+    <div class="container">
+        <div class="col-6"> 
+            <label for="Pais">Destino</label>
+            <input class="form-control" type="text" name="destino" value="{{ destino.destino }}" required>
+        </div>
+        <div class="col-6"> 
+            <label for="DestinoEstado">Estado del Destino</label>
+            <select class="form-select" name="estado" required>
+                <option value="True">Activo</option>
+                <option value="False">Inactivo</option>
+              </select>
+        </div>
+        {% comment %} <div class="col-6"> 
+            <label for="date">Fecha de Salida</label>
+                <div class="input-group date" id="datepicker">
+                    <input type="text" class="form-control" name="fecha_salida" required>
+                    <span class="input-group-append" required>
+                        <span class="input-group-text bg-white d-block" required>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
+        </div> {% endcomment %}
+        <div class="col-6"> 
+            <label for="imagen" class="form-label">Imagen del Destino</label>
+            <input class="form-control" type="file" id="formFile" name="imagen">
+        </div>
+        <input class="btn btn-outline-success" type="submit" value="Editar Destino">
+        <a href="{% url 'VistaDestinos' destino.pais.slug %}"><button type="button" class="btn btn-outline-info">Volver</button></a>
+        {% comment %} <a href="/aerolineasapi/paises/{{ pais.slug }}"><button type="button" class="btn btn-outline-info">Volver</button></a> {% endcomment %}
+    </div>
+</form>
+{% comment %} <script type="text/javascript">
+    $(function() {
+        $('#datepicker').datepicker();
+    });
+</script> {% endcomment %}
+{% endblock content %}

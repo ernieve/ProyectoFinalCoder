@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="row col-7" method="POST">
+    {% csrf_token %}
+    <p>
+        <h3>Seguro que desea eliminar el siguiente destino?</h3>
+        <h2>{{ destino.destino }}</h2>
+    </p>
+    <div class="col-6">
+        <input class="btn btn-outline-danger" type="submit" value="Eliminar">
+        <a href="{% url 'VistaDestinos' destino.pais.slug %}"><button type="button" class="btn btn-outline-info">Volver</button></a>
+        {% comment %} <a href="/aerolineasapi/paises/{{ destino.pais.slug }}"><button type="button" class="btn btn-outline-info">Volver</button> {% endcomment %}
+        </a>
+    </div>
+{% endblock content %}

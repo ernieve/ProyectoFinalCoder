@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center;">  
+    <h3>Destinos disponibles para agregar vuelos:</h3>
+    {% for pais in paises %}
+    <p>
+        <h4 style="color: blue;">{{ pais.pais }}</h4>
+    </p>
+    <p>
+        <h6>Agregado el: {{ pais.created_at|date:'d/m/Y' }}</h6> 
+    </p>
+    <img src="{{ pais.imagen.url }}" width="150" height="150">
+    {% for destino in destinos %}
+    {% if pais.id == destino.pais_id %}
+    <p>
+        <div class="container">
+            <div class="row" style="background-color: gainsboro;">
+                <div class="col-2">
+                    {{ forloop.counter }}
+                </div>
+                <div class="col-4">
+                    {{ destino.destino }} 
+                </div>
+                <div class="col-2">
+                    Agregado el: {{ destino.created_at|date:"d/m/Y" }}
+                </div>
+                <div class="col-2">
+                    <img src="{{ destino.imagen.url }}" width="50" height="50">
+                </div>
+                <div class="col-2">
+                    {% comment %} <a href="/aerolineasapi/vuelos/create/{{ destino.id }}"> {% endcomment %}
+                    <a href="{% url 'CrearVuelo' destino.id %}">
+                    <button type="button" class="btn btn-warning">Crear Vuelo</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </p>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% endblock content %}
+</div>
